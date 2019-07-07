@@ -1,0 +1,69 @@
+#dev
+---
+spring:
+  profiles: dev
+
+#zuul설정
+zuul:
+  retryable: true
+  strip-prefix: true
+  prefix: /
+  ignored-services: '*'
+  routes:
+    api-user:
+      path: /user/**
+      service-id: api-user-dev
+    api-product:
+      path: /product/**
+      service-id: api-product-dev
+    api-order:
+      path: /order/**
+      service-id: api-order-dev
+    api-delivery:
+      path: /delivery/**
+      service-id: api-delivery-dev
+  host:
+    max-total-connections: 100
+    max-per-route-connections: 20
+    connect-timeout-millis: 15000
+    socket-timeout-millis: 60000
+  ribbon-isolation-strategy: THREAD
+
+ribbon:
+  ConnectionTimeout: 5000
+  ReadTimeout: 2000
+
+#live
+---
+spring:
+  profiles: live
+
+#zuul설정
+zuul:
+  retryable: true
+  strip-prefix: true
+  prefix: /
+  ignored-services: '*'
+  routes:
+    api-user:
+      path: /user/**
+      service-id: api-user
+    api-product:
+      path: /product/**
+      service-id: api-product
+    api-order:
+      path: /order/**
+      service-id: api-order
+    api-delivery:
+      path: /delivery/**
+      service-id: api-delivery
+  host:
+    max-total-connections: 5000
+    max-per-route-connections: 2000
+    connect-timeout-millis: 15000
+    socket-timeout-millis: 60000
+  ribbon-isolation-strategy: THREAD
+
+ribbon:
+  ConnectionTimeout: 5000
+  ReadTimeout: 2000  

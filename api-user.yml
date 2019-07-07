@@ -1,0 +1,20 @@
+#DEV
+---
+spring:
+  profiles: dev
+
+user:
+  name: kimsssss
+  
+---
+spring:
+  profiles: stage
+
+user:
+  name: simjihyun2
+---
+spring:
+  profiles: live
+
+user:
+  name: simjihyun3
